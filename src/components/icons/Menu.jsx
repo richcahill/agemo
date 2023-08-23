@@ -6,11 +6,10 @@ let Logo = ({ color, size, className }) => {
       xmlns='http://www.w3.org/2000/svg'
       width='11'
       height='11'
-      fill='none'
       viewBox='0 0 11 11'
       className={className}
     >
-      <g fill={color || '#D9D9D9'}>
+      <g>
         <circle cx='1.5' cy='1.5' r='1.5' />
         <circle cx='9.5' cy='1.5' r='1.5' />
         <circle cx='9.5' cy='9.5' r='1.5' />
