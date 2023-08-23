@@ -6,7 +6,7 @@ const Nav = () => {
   return (
     <nav className='w-full flex justify-center p-2 gap-2 items-stretch'>
       <div className='bg-white/10 flex justify-center items-center rounded-full h-10 w-10 cursor-pointer'>
-        <Logo color='#fff' className='h-6 w-6' />
+        <Logo color='#fff' className='h-5 w-5' />
       </div>
       <div className='bg-white/10 h-10 w-10 flex justify-center items-center rounded-full cursor-pointer hover:'>
         <Menu className='h-3 w-3' />
