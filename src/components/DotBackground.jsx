@@ -1,6 +1,6 @@
 export default function DotBackground(props) {
   return (
-    <svg className='absolute w-full h-full mt-8'>
+    <svg className='absolute w-full h-full mt-8 left-0 right-0 top-0'>
       <defs>
         <pattern
           id='polka-dots'

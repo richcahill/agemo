@@ -39,7 +39,10 @@ export default function Home() {
 
         if (index === divRefs.current.length - 1) return { scale, translateY };
 
-        const nextRect = divRefs.current[index + 1].getBoundingClientRect();
+        const nextElement = divRefs.current[index + 1];
+        if (!nextElement) return { scale, translateY }; // Guard clause
+
+        const nextRect = nextElement.getBoundingClientRect();
 
         if (nextRect.top <= 100 && nextRect.top >= 0) {
           scale = 1 - (divRefs.current.length - index) * 0.03;
@@ -95,7 +98,7 @@ export default function Home() {
                 height: containerHeight - 20,
                 transform: `scale(${transforms[index]?.scale}) translateY(${transforms[index]?.translateY}px)`,
               }}
-              className='w-full bg-black/5 dark:bg-white/5 p-4 rounded-t-3xl sticky top-0 transition-transform origin-top border border-black/20 dark:border-white/20 backdrop-blur-2xl'
+              className='w-full bg-black/5 dark:bg-black/95 p-4 rounded-t-3xl sticky top-0 transition-transform origin-top border border-black/20 dark:border-white/20 backdrop-blur-2xl'
             >
               <div className='text-sm uppercase tracking-wide text-black dark:text-white opacity-50'>
                 {step.title}
