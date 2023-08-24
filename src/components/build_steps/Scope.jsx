@@ -4,7 +4,7 @@ import LoadingSpinner from '../LoadingSpinner';
 import ReactFlow from 'reactflow';
 
 export default function Scope(props) {
-  const [buildState, setBuildState] = useState('complete');
+  const [buildState, setBuildState] = useState('loading');
 
   useEffect(() => {
     const timer = setTimeout(() => {
