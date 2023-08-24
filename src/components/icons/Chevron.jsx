@@ -11,9 +11,9 @@ let Chevron = ({ color, size, className }) => {
       className={className}
     >
       <path
-        fill-rule='evenodd'
+        fillRule='evenodd'
         d='M.28.987a.5.5 0 0 1 .707 0L6.88 6.88 12.773.987a.5.5 0 1 1 .707.707L7.234 7.941a.5.5 0 0 1-.707 0L.28 1.694a.5.5 0 0 1 0-.707Z'
-        clip-rule='evenodd'
+        clipRule='evenodd'
       />
     </svg>
   );

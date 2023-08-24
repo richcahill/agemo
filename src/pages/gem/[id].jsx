@@ -3,18 +3,29 @@ import Nav from '@/components/Nav';
 import Head from 'next/head';
 
 import Scope from '@/components/build_steps/Scope';
+import Start from '@/components/build_steps/Start';
 
 export default function Home() {
   const containerRef = useRef(null);
   const divRefs = useRef([]);
   const [containerHeight, setContainerHeight] = useState(0);
   const [transforms, setTransforms] = useState([]);
+  const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
     if (containerRef.current) {
       setContainerHeight(containerRef.current.offsetHeight);
     }
   }, []);
+
+  useEffect(() => {
+    if (divRefs.current[activeStep]) {
+      divRefs.current[activeStep].scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }, [activeStep]);
 
   useEffect(() => {
     setTransforms(
@@ -51,9 +62,13 @@ export default function Home() {
 
   // const divContents = ['scope', 'build', 'design', 'test'];
 
+  let switchStep = (step) => {
+    setActiveStep(step);
+  };
+
   const steps = [
-    { title: 'Start', component: <Scope /> },
-    { title: 'Scope', component: <div>Scope</div> },
+    { title: 'Start', component: <Start switchStep={switchStep} /> },
+    { title: 'Scope', component: <Scope switchStep={switchStep} /> },
     { title: 'Build', component: <div>Scope</div> },
     { title: 'Run', component: <div>Scope</div> },
   ];
@@ -69,22 +84,26 @@ export default function Home() {
         className='flex-1 p-4 pb-0 w-full relative overflow-scroll'
         ref={containerRef}
       >
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            ref={(el) => (divRefs.current[index] = el)}
-            style={{
-              height: containerHeight - 20,
-              transform: `scale(${transforms[index]?.scale}) translateY(${transforms[index]?.translateY}px)`,
-            }}
-            className='w-full bg-black/5 dark:bg-white/5 p-4 rounded-t-3xl sticky top-0 transition-transform origin-top border border-black/20 dark:border-white/20 backdrop-blur-2xl'
-          >
-            <div className='text-sm uppercase tracking-wide text-black dark:text-white opacity-50'>
-              {step.title}
+        {steps.map((step, index) => {
+          if (index > activeStep) return null; // This line ensures that only steps before the active one are shown
+
+          return (
+            <div
+              key={index}
+              ref={(el) => (divRefs.current[index] = el)}
+              style={{
+                height: containerHeight - 20,
+                transform: `scale(${transforms[index]?.scale}) translateY(${transforms[index]?.translateY}px)`,
+              }}
+              className='w-full bg-black/5 dark:bg-white/5 p-4 rounded-t-3xl sticky top-0 transition-transform origin-top border border-black/20 dark:border-white/20 backdrop-blur-2xl'
+            >
+              <div className='text-sm uppercase tracking-wide text-black dark:text-white opacity-50'>
+                {step.title}
+              </div>
+              {step.component}
             </div>
-            {step.component}
-          </div>
-        ))}
+          );
+        })}
       </div>
     </main>
   );
