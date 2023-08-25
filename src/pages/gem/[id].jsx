@@ -4,13 +4,14 @@ import Head from 'next/head';
 
 import Scope from '@/components/build_steps/Scope';
 import Start from '@/components/build_steps/Start';
+import Build from '@/components/build_steps/Build';
 
 export default function Home() {
   const containerRef = useRef(null);
   const divRefs = useRef([]);
   const [containerHeight, setContainerHeight] = useState(0);
   const [transforms, setTransforms] = useState([]);
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(2);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -72,7 +73,7 @@ export default function Home() {
   const steps = [
     { title: 'Start', component: <Start switchStep={switchStep} /> },
     { title: 'Scope', component: <Scope switchStep={switchStep} /> },
-    { title: 'Build', component: <div>Scope</div> },
+    { title: 'Build', component: <Build switchStep={switchStep} /> },
     { title: 'Run', component: <div>Scope</div> },
   ];
 

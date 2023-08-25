@@ -26,7 +26,11 @@ export default function Scope(props) {
           </div>
         </div>
       ) : (
-        <div className='flex gap-4 h-full w-full pt-16 justify-between flex-col'>
+        <div className='flex gap-4 h-full w-full justify-between flex-col'>
+          <div className='text-2xl font-medium'>
+            These are the steps for your application
+          </div>
+
           <div className='flex gap-4 flex-1 w-full items-start'>
             <div className='bg-white/90 dark:bg-white/10 text-xl py-2 px-4 rounded-full backdrop-blur-lg'>
               Start
@@ -34,7 +38,7 @@ export default function Scope(props) {
             <div className='bg-white/90 dark:bg-white/10 pt-2 p-4 rounded-md flex flex-col w-60 gap-2 items-start backdrop-blur-lg'>
               <div className='text-xl'>Scrape Bloomberg</div>
               <div className='opacity-50 leading-tight text-sm'>
-                Use the 'Web Scraping' API to extract data from the specified
+                Use the Web Scraping API to extract data from the specified
                 Bloomberg page.
               </div>
               <div className='text-sm px-2 py-1 bg-black/5 dark:bg-white/5 mt-4 border-b-[#4080ee] border-b-4 rounded-sm backdrop-blur-lg'>
