@@ -74,7 +74,7 @@ export default function Home() {
     { title: 'Start', component: <Start switchStep={switchStep} /> },
     { title: 'Scope', component: <Scope switchStep={switchStep} /> },
     { title: 'Build', component: <Build switchStep={switchStep} /> },
-    { title: 'Run', component: <div>Scope</div> },
+    { title: 'Run', component: <div></div> },
   ];
 
   return (
@@ -99,7 +99,7 @@ export default function Home() {
                 height: containerHeight - 20,
                 transform: `scale(${transforms[index]?.scale}) translateY(${transforms[index]?.translateY}px)`,
               }}
-              className='w-full bg-black/5 dark:bg-black/95 p-4 rounded-t-3xl sticky top-0 transition-transform origin-top border border-black/20 dark:border-white/20 backdrop-blur-2xl'
+              className='w-full bg-black/5 dark:bg-black/95 p-4 rounded-t-3xl sticky top-0 transition-transform origin-top border border-black/20 dark:border-white/20 backdrop-blur-2xl overflow-hidden'
             >
               <div className='text-sm uppercase tracking-wide text-black dark:text-white opacity-50'>
                 {step.title}

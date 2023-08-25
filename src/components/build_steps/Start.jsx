@@ -39,7 +39,7 @@ export default function Scope(props) {
         />
         {prompt && (
           <div
-            className='bg-white text-black text-2xl py-2 px-6 rounded-full transition-opacity opacity-80 hover:opacity-100 cursor-pointer'
+            className='bg-black text-white dark:bg-white dark:text-black text-2xl py-2 px-6 rounded-full transition-opacity opacity-80 hover:opacity-100 cursor-pointer'
             onClick={() => props.switchStep(1)}
           >
             build it
