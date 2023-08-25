@@ -11,7 +11,7 @@ export default function DotBackground(props) {
           patternUnits='userSpaceOnUse'
         >
           <circle
-            className='fill-white dark:fill-white/20'
+            className='fill-black/30 dark:fill-white/30'
             cx='16'
             cy='16'
             r='0.5'

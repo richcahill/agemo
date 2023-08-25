@@ -1,80 +1,33 @@
-import React, { useRef, useState, useEffect } from 'react';
-import Nav from '@/components/Nav';
 import Head from 'next/head';
+import Link from 'next/link';
+import Logo from '@/components/icons/Logo';
+import DotBackground from '@/components/DotBackground';
 
 export default function Home() {
-  const containerRef = useRef(null);
-  const divRefs = useRef([]);
-  const [containerHeight, setContainerHeight] = useState(0);
-  const [transforms, setTransforms] = useState([]);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      setContainerHeight(containerRef.current.offsetHeight);
-    }
-  }, []);
-
-  useEffect(() => {
-    setTransforms(
-      new Array(divRefs.current.length).fill({ scale: 1, translateY: 0 })
-    );
-
-    const handleScroll = () => {
-      const newTransforms = divRefs.current.map((ref, index) => {
-        let scale = 1;
-        let translateY = 0;
-
-        // Skip the last div as it doesn't affect scaling
-        if (index === divRefs.current.length - 1) return { scale, translateY };
-
-        const nextRect = divRefs.current[index + 1].getBoundingClientRect();
-
-        if (nextRect.top <= 100 && nextRect.top >= 0) {
-          scale = 1 - (divRefs.current.length - index) * 0.03;
-          translateY = -4 * (divRefs.current.length - index);
-        }
-
-        return { scale, translateY };
-      });
-
-      setTransforms(newTransforms);
-    };
-
-    containerRef.current.addEventListener('scroll', handleScroll);
-
-    // Cleanup
-    return () => {
-      containerRef.current.removeEventListener('scroll', handleScroll);
-    };
-  }, [divRefs]);
-
-  const divContents = ['scope', 'build', 'design', 'test'];
-
   return (
     <main className='flex h-screen flex-col items-center gap-4'>
       <Head>
         <title>Agemo</title>
         <link rel='icon' href='/favicon.png' />
       </Head>
-      <Nav />
-      <div
-        className='flex-1 p-4 pb-0 w-full relative overflow-scroll'
-        ref={containerRef}
-      >
-        {divContents.map((text, index) => (
-          <div
-            key={index}
-            ref={(el) => (divRefs.current[index] = el)}
-            style={{
-              height: containerHeight - 20,
-              transform: `scale(${transforms[index]?.scale}) translateY(${transforms[index]?.translateY}px)`,
-            }}
-            className='w-full bg-white/5 p-4 rounded-t-3xl sticky top-0 transition-transform origin-top border border-white/20 backdrop-blur-2xl'
-          >
-            <div className='text-sm uppercase tracking-wide'>{text}</div>
-          </div>
-        ))}
+      <DotBackground />
+      <div>
+        <div className=' mt-4 py-2 px-4 rounded-full flex items-center  gap-3 bg-black/5 dark:bg-white/10'>
+          <Logo color='#fff' className='h-7 w-7 fill-black dark:fill-white' />
+          <div className='font-bold tracking-wider text-xl'>AGEMO</div>
+        </div>
       </div>
+      <div className='p-8 text-9xl font-medium container flex flex-col gap-2 tracking-tight'>
+        <div className=''>Real Software</div>
+        <div className='self-end'>Generated.</div>
+      </div>
+      <Link href='/gem/932oifjd8'>
+        <div className='text-3xl rounded-full bg-black dark:bg-white px-8 pb-3 pt-2 text-white dark:text-black  opacity-90 hover:opacity-100 transition-opacity cursor-pointer mt-8'>
+          create your first gem
+        </div>
+      </Link>
+      <img src='/images/homeBackground.svg' className='w-full fixed bottom-0' />
+      <img src='/images/layers.svg' className=' fixed bottom-0' />
     </main>
   );
 }

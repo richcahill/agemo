@@ -11,7 +11,7 @@ export default function Home() {
   const divRefs = useRef([]);
   const [containerHeight, setContainerHeight] = useState(0);
   const [transforms, setTransforms] = useState([]);
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -60,7 +60,10 @@ export default function Home() {
 
     // Cleanup
     return () => {
-      containerRef.current.removeEventListener('scroll', handleScroll);
+      if (containerRef.current) {
+        // Check if containerRef.current exists before trying to remove the listener
+        containerRef.current.removeEventListener('scroll', handleScroll);
+      }
     };
   }, [divRefs]);
 
@@ -80,7 +83,7 @@ export default function Home() {
   return (
     <main className='flex h-screen flex-col items-center gap-4'>
       <Head>
-        <title>Agemo</title>
+        <title>Agemo · New Gem</title>
         <link rel='icon' href='/favicon.png' />
       </Head>
       <Nav />

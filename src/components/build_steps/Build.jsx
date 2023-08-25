@@ -96,7 +96,7 @@ export default function Scope(props) {
           </div>
         </div>
       ) : (
-        <div className='flex gap-4 h-full w-full justify-between flex-col'>
+        <div className='flex gap-4 h-full w-full justify-between flex-col overflow-hidden'>
           <div className='text-2xl font-medium'>
             These are your microservices
           </div>
@@ -208,7 +208,7 @@ export default function Scope(props) {
           )}
 
           {inspectNode && (
-            <div className='h-full absolute right-0 bg-white w-1/3 top-0 rounded-r-3xl rounded-l-xl flex flex-col'>
+            <div className='h-full absolute right-0 bg-white dark:bg-white/10 backdrop-blur-3xl w-1/3 top-0 rounded-r-3xl rounded-l-xl flex flex-col'>
               <div className='flex flex-col gap-4 p-8'>
                 <div className='flex w-full justify-between'>
                   <div className='text-2xl font-medium'>
